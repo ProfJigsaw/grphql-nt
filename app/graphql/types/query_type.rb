@@ -9,5 +9,22 @@ module Types
     def test_field
       "Hello World!"
     end
+
+    # User query
+    field :user, UserType, null: true do
+      description "Find a user by ID"
+      argument :id, Integer, required: true
+    end
+    def user(id:)
+      User.find_by(id: id)
+    end
+
+    # Project query
+    field :project, [ProjectType], null: true do
+      description "Find all projects and their users"
+    end
+    def project
+      Project.all[0,3]
+    end
   end
 end
