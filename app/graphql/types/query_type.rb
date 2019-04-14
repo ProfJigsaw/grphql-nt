@@ -24,7 +24,7 @@ module Types
       description "Find all projects and their users"
     end
     def project
-      Project.all[0,3]
+      context[:current_user].projects
     end
   end
 end
